@@ -2,8 +2,8 @@ package ru.iskander.tabaev.coworking.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.RoomCreateRequest;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.RoomResponse;
+import ru.iskander.tabaev.coworking.controllers.room.dto.RoomCreateRequest;
+import ru.iskander.tabaev.coworking.controllers.room.dto.RoomResponse;
 import ru.iskander.tabaev.coworking.exceptions.WebResourceNotFoundException;
 import ru.iskander.tabaev.coworking.exceptions.WebServiceException;
 import ru.iskander.tabaev.coworking.mappers.RoomMapper;

@@ -1,8 +1,8 @@
 package ru.iskander.tabaev.coworking.services;
 
 import org.springframework.stereotype.Service;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.BookingCreateRequest;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.BookingCreateResponse;
+import ru.iskander.tabaev.coworking.controllers.booking.dto.BookingCreateRequest;
+import ru.iskander.tabaev.coworking.controllers.booking.dto.BookingCreateResponse;
 import ru.iskander.tabaev.coworking.exceptions.WebResourceNotFoundException;
 import ru.iskander.tabaev.coworking.exceptions.WebServiceException;
 import ru.iskander.tabaev.coworking.mappers.BookingMapper;

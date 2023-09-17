@@ -4,9 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.RoomCreateRequest;
-import ru.iskander.tabaev.coworking.controllers.coworking.dto.RoomResponse;
+import ru.iskander.tabaev.coworking.controllers.room.dto.RoomCreateRequest;
+import ru.iskander.tabaev.coworking.controllers.room.dto.RoomResponse;
 import ru.iskander.tabaev.coworking.models.Room;
 
 @Mapper

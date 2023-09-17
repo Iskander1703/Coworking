@@ -1,4 +1,4 @@
-package ru.iskander.tabaev.coworking.controllers.coworking.dto;
+package ru.iskander.tabaev.coworking.controllers.booking.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
