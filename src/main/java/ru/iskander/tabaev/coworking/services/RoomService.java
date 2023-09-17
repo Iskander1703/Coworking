@@ -11,8 +11,8 @@ import ru.iskander.tabaev.coworking.models.Coworking;
 import ru.iskander.tabaev.coworking.models.Room;
 import ru.iskander.tabaev.coworking.repositories.CoworkingRepository;
 import ru.iskander.tabaev.coworking.repositories.RoomRepository;
+import ru.iskander.tabaev.coworking.services.utils.DateUtils;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,18 +41,18 @@ public class RoomService {
         minCapacity = minCapacity == null ? 0 : minCapacity;
         List<Room> rooms;
 
-        if (!checkDateInterval(beginDate, endDate)) {
-            throw new WebServiceException("Invalid date interval. The interval should have been a multiple of half an hour");
-        }
-
         if (minCapacity > 20) {
             throw new WebServiceException("Invalid minimum capacity value. The minimum capacity should not be more than 20");
         }
 
         if (beginDate != null && endDate != null) {
-            rooms = roomRepository.findAvailableRoomsInCoworking(coworkingId, minCapacity, beginDate, endDate);
+            if (!DateUtils.checkDateInterval(beginDate, endDate)) {
+                throw new WebServiceException("Invalid date interval. The interval should have been a multiple of half an hour");
+            } else {
+                rooms = roomRepository.findAvailableRoomsInCoworking(coworkingId, minCapacity, beginDate, endDate);
+            }
         } else {
-            rooms = roomRepository.findAllByCapacityGreaterThanEqualAndCoworkingId(minCapacity, coworkingId);
+            rooms = roomRepository.findAllByMaxCapacityGreaterThanEqualAndCoworkingId(minCapacity, coworkingId);
         }
         return rooms
                 .stream()
@@ -77,7 +77,7 @@ public class RoomService {
         room.setCoworking(coworking);
 
         coworking.getRooms().add(room);
-        coworkingRepository.save(coworking);
+        room = roomRepository.save(room);
 
         return RoomMapper.INSTANCE.fromRoomToRoomResponse(room);
 
@@ -107,9 +107,4 @@ public class RoomService {
         return RoomMapper.INSTANCE.fromRoomToRoomResponse(roomRepository.save(room));
     }
 
-    private boolean checkDateInterval(LocalDateTime beginDate, LocalDateTime endDate) {
-        Duration duration = Duration.between(beginDate, endDate);
-        long minutes = duration.toMinutes();
-        return minutes % 30 == 0;
-    }
 }

@@ -1,4 +1,4 @@
-INSERT INTO rooms (coworking_id, name, capacity, description)
+INSERT INTO rooms (coworking_id, name, max_capacity, description)
 VALUES (1, 'Уютный кабинет для одного', 1, 'Уютный кабинет для одного человека.'),
        (1, 'Просторный кабинет для двоих', 2, 'Просторный кабинет для двух человек.'),
        (1, 'Кабинет для небольшой группы', 3, 'Кабинет для небольшой группы из трех человек.'),
